@@ -2,6 +2,9 @@ import os
 import shutil
 from time import sleep
 import PyPDF2  # 导入PyPDF2，注意区分大小写
+# from Crypto.Cipher import AES
+
+import reg.reg
 from file.delete import del2bin
 
 
@@ -15,7 +18,8 @@ def isEncrypt(pdf_file):
         return 0
 
 
-path = "D:\\Download"
+# path = "D:\\Downloads"
+path=reg.reg.getDownloadLoaction()
 for root, dirs, files in os.walk(path):
     for file_name in files:
         file_path = os.path.join(root, file_name)  # 原始文件全路径
