@@ -2,7 +2,7 @@ import os
 import shutil
 from time import sleep
 import PyPDF2  # 导入PyPDF2，注意区分大小写
-# from Crypto.Cipher import AES
+
 
 import reg.reg
 from file.delete import del2bin
@@ -10,12 +10,18 @@ from file.delete import del2bin
 
 def isEncrypt(pdf_file):
     pdf = open(pdf_file, 'rb')
-    rd = PyPDF2.PdfReader(pdf)
-    if rd.is_encrypted:
-        print(pdf_file+"被加密")
+    try:
+        rd = PyPDF2.PdfReader(pdf)
+        if rd.is_encrypted:
+            print(pdf_file+"被加密")
+            return 1
+        else:
+            return 0
+    except:
+        print("   Error    ")
+        print(" PyPDF2.errors.DependencyError: PyCryptodome is required for AES algorithm  ")
+        print(" 已跳过，默认开始解密 ")
         return 1
-    else:
-        return 0
 
 
 # path = "D:\\Downloads"
