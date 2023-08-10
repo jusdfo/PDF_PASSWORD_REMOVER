@@ -26,6 +26,7 @@ def isEncrypt(pdf_file):
 
 # path = "D:\\Downloads"
 path=reg.reg.getDownloadLoaction()
+print(path)
 for root, dirs, files in os.walk(path):
     for file_name in files:
         file_path = os.path.join(root, file_name)  # 原始文件全路径
