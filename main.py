@@ -24,8 +24,7 @@ def isEncrypt(pdf_file):
 
 
 Download_Dir = reg.reg.getDownloadLoaction()
-Path_List = [r"D:\Downloads",
-             r"E:\科研资料",
+Path_List = [r"C:\Users\lvjinwei\googledrive\lvjinwei97\科研\丁志慧\参考文献",
              Download_Dir
              ]
 for path in Path_List:
@@ -41,7 +40,7 @@ for path in Path_List:
                 print(new_path)
                 if os.path.exists(new_path):
                     os.remove(new_path)
-                os.system('qpdf --decrypt "%s" "%s"' % (file_path, new_path))
+                result=os.system('qpdf --decrypt "%s" "%s"' % (file_path, new_path))
                 sleep(5)
                 del2bin(file_path)
                 shutil.move(new_path, file_path)
