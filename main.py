@@ -31,7 +31,8 @@ Download_Dir = reg.reg.getDownloadLoaction()
 Path_List = [
     # r"C:\Users\lvjinwei\参考文献",
     #          Download_Dir
-            r"C:\Users\lvjinwei\参考文献\大论文"
+            r"C:\Users\lvjinwei\参考文献\大论文",
+            r"X:\googledrive\lvjinwei97\大论文\参考文献"
              # r"C:\Users\lvjinwei\googledrive\lvjinwei97\大论文"
              ]
 for path in Path_List:
@@ -56,7 +57,7 @@ for path in Path_List:
                 # res.stdout.close() # 关闭标准输出
                 # print(result)
                 # while(os.path.exists(new_path)==False):
-                #     sleep(5)
+                sleep(5)
                 endtime = datetime.datetime.now()
                 print (endtime - starttime)
 
