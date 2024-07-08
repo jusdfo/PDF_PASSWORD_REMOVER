@@ -1,7 +1,11 @@
+import datetime
 import os
 import shutil
+import subprocess
+from pathlib import Path
 from time import sleep
 import PyPDF2  # 导入PyPDF2，注意区分大小写
+from pip._internal.operations.prepare import File
 
 import reg.reg
 from file.delete import del2bin
@@ -24,8 +28,11 @@ def isEncrypt(pdf_file):
 
 
 Download_Dir = reg.reg.getDownloadLoaction()
-Path_List = [r"C:\Users\lvjinwei\googledrive\lvjinwei97\科研\丁志慧\参考文献",
-             Download_Dir
+Path_List = [
+    # r"C:\Users\lvjinwei\参考文献",
+    #          Download_Dir
+            r"C:\Users\lvjinwei\参考文献\大论文"
+             # r"C:\Users\lvjinwei\googledrive\lvjinwei97\大论文"
              ]
 for path in Path_List:
     if (os.path.exists(path)==False) : continue
@@ -40,8 +47,19 @@ for path in Path_List:
                 print(new_path)
                 if os.path.exists(new_path):
                     os.remove(new_path)
+                starttime = datetime.datetime.now()
                 result=os.system('qpdf --decrypt "%s" "%s"' % (file_path, new_path))
-                sleep(5)
+                # cmd='qpdf --decrypt '+file_path+" "+new_path;
+                # res = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) # 使用管道
+                # result = res.stdout.read()  # 获取输出结果
+                # res.wait()  # 等待命令执行完成
+                # res.stdout.close() # 关闭标准输出
+                # print(result)
+                # while(os.path.exists(new_path)==False):
+                #     sleep(5)
+                endtime = datetime.datetime.now()
+                print (endtime - starttime)
+
                 del2bin(file_path)
                 shutil.move(new_path, file_path)
         # os.remove(file_path)  # 删掉原始文件，如果怕误删，注释掉这一行
